@@ -1,0 +1,12 @@
+.Content{
+    padding: .5rem;
+    background-color:rgb(124, 119, 119);
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+}
+.logo{
+    
+    width: 3.5rem;
+    height: 3.5rem;
+}

@@ -1,0 +1,13 @@
+.stickTop{
+    border-bottom: 1px solid #000;
+}
+.colWidth{
+    /* width:7rem; */
+}
+.Content{
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+}

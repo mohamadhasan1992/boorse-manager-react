@@ -1,0 +1,58 @@
+.Content{
+    height: 2rem;
+    display: grid;
+    grid-template-columns: repeat(9,1fr);
+    margin-top: 1rem;
+    line-height: 1.8rem;
+
+}
+
+
+.inputStyle{
+    width:6rem;
+    border-radius: 7px;
+    padding: 0 .5rem;
+    font-family: lalezar;
+    /* grid-column: 1/2; */
+}
+
+.btnBuy{
+    max-width: 7rem;
+    color: #fff;
+    border: 1px solid #000;
+    background-color: green;
+    border-radius: 20px;
+    font-family: lalezar;
+    font-size: 1.1rem;
+    box-shadow: 1px 1px rgb(116, 112, 112);
+    transform: translateY(0px);
+    transition: all 0.2s;
+}
+.btnSell{
+    max-width: 7rem;
+    color: #fff;
+    border: 1px solid #000;
+    background-color: red;
+    border-radius: 20px;
+    font-family: lalezar;
+    font-size: 1.1rem;
+    box-shadow: 1px 1px rgb(116, 112, 112);
+    transform: translateY(0px);
+    transition: all 0.2s;
+}
+.btnComplete{
+    color: #fff;
+    max-width: 7rem;
+    border-radius: 15px;
+    background-color: rgb(146, 145, 145);
+    font-family: lalezar;
+    font-size: 1rem;
+    box-shadow: 1px 1px rgb(116, 112, 112);
+    transform: translateY(0px);
+    transition: all 0.2s;
+}
+.btnBuy:hover , .btnSell:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+
+}

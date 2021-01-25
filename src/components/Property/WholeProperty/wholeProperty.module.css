@@ -1,0 +1,46 @@
+.heading6{
+    color: rgb(87, 84, 84);
+}
+.oneBox{
+    height: 30vh;  
+    border-bottom: 1px solid #000;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+.rightBox{
+    grid-column: 1/2;
+    grid-row: 1/-1;
+}
+.leftBox{
+    grid-column: 2/3;
+    grid-row: 1/-1;
+    border-radius: 25px;
+    border: 1px solid #000;
+    margin: 1rem 2rem;
+    padding: 1rem;
+}
+.inline{
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    
+}
+.stickBottom{
+    padding-top: 5rem;
+}
+.paddingLeft{
+    padding-left: 1rem;
+}
+.inputStyle{
+    border-radius: 10px;
+    height: 1.5rem;
+    padding: 0 1rem;
+    font-family: "lalezar";
+}
+
+.formStyle{
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+}
