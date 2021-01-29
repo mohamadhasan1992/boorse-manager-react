@@ -44,3 +44,24 @@
     display: flex;
     flex-direction: column;
 }
+.iconBox{
+    display: flex;
+}
+.pl5{
+    padding-left: .5rem;
+}
+.ml5{
+    margin-left: .5rem;
+}
+.green{
+    color: green;
+    cursor: pointer;
+}
+.red{
+    color: red;
+    cursor: pointer;
+}
+.grey{
+    color: grey;
+    cursor: pointer;
+}

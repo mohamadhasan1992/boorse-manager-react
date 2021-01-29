@@ -1,7 +1,7 @@
 .Content{
     height: 2rem;
     display: grid;
-    grid-template-columns: repeat(9,1fr);
+    grid-template-columns: repeat(10,1fr);
     margin-top: 1rem;
     line-height: 1.8rem;
 
@@ -55,4 +55,19 @@
     cursor: pointer;
     transform: translateY(-2px);
 
+}
+.iconBox{
+    display: flex;
+}
+.pl5{
+    padding-left: .5rem;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
+.grey{
+    color: grey;
 }

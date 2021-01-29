@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import Layout from './components/Layout/Layout';
-import Property from './containers/PropertyContainer';
+import Property from './containers/Property';
 
 
 class App extends Component {

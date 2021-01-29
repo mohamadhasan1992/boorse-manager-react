@@ -1,6 +1,10 @@
 .Content{
-    margin-top: 1rem;
+    margin: 1rem 0;
     border-top: 1px solid #000;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
+.ml5{
+    margin-left: .5rem;
+}
+

@@ -1,13 +1,12 @@
-.stickTop{
-    border-bottom: 1px solid #000;
-}
-.colWidth{
-    /* width:7rem; */
+
+.pl5{
+    padding: .5rem 0;
 }
 .Content{
     height: 2rem;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
     margin-top: 1rem;
+    line-height: 1.8rem;
 
 }

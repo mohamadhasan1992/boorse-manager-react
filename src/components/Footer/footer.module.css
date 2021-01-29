@@ -1,0 +1,13 @@
+.Content{
+    background-color: grey;
+    height: 20vh;
+    text-align: center;
+}
+.list{
+    padding-top: 2rem;
+    display: flex;
+    
+}
+.item{
+    margin-right: 2rem;
+}

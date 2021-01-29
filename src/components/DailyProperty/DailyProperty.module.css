@@ -1,0 +1,46 @@
+.Content{
+
+}
+.rowInput{
+    padding: .5rem;
+    display: flex;
+}
+.inputStyle{
+    width:10rem;
+    border-radius: 7px;
+    padding: 0 .5rem;
+    font-family: lalezar;
+    /* grid-column: 1/2; */
+}
+.iconBox{
+    display: flex;
+}
+.ml5{
+    margin-left: .5rem;
+}
+.pl10{
+    padding-left: 1rem;
+}
+.pl5{
+    padding-left: .5rem;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
+.grey{
+    color: grey;
+}
+i{
+    cursor: pointer;
+}
+.list{
+    list-style: none;
+}
+.list{
+    line-height: 2rem;
+    display: flex;
+    justify-content: space-between;
+}

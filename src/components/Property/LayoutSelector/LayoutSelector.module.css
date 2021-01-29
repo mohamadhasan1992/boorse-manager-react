@@ -1,0 +1,30 @@
+.stickTop{
+    border-bottom: 1px solid #000;
+}
+
+.pl5{
+    padding: .5rem 0;
+}
+.ml5{
+    margin-left: .5rem;
+}
+.btn{
+    cursor: pointer;
+    font-size: .9rem;
+    font-family: lalezar;
+    padding: .3rem 2rem;
+    border-radius: 15px;
+    border: .5px solid #000;
+    transform: translateY(0);
+    transition: all 1ms;
+}
+.btn:hover{
+    transform: translateY(-1px);
+}
+.btnActive{
+    background-color: grey;
+    color: #fff;
+}
+.btn:focus{
+    outline-style: none;
+}

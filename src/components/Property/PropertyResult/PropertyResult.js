@@ -1,18 +1,14 @@
-import React, {Component} from 'react';
-import Auxiliary from '../../../hoc/Auxiliary';
+import React from 'react';
 import classes from '../PropertyResult/propertyResult.module.css'
 
 
-class PropertyResult extends Component{
-    render(){
+const PropertyResult= (props) => {
         return (
           <div className={classes.Content}>
-            <div>دارایی لحظه ای</div>
-            <div>سود و زیان امروز</div>
-            
+            <span className={classes.ml5}>مجموع</span>
+            <span>{props.propertyResult}</span>
           </div>
         );
-    }
 }
 
 export default PropertyResult;
