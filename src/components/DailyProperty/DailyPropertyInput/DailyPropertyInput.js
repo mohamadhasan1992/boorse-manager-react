@@ -1,10 +1,21 @@
 import React from 'react';
 import classes from '../DailyProperty.module.css';
-import dateClasses from "../Datepicker.module.css";
 import {Calendar, DatePicker} from 'react-persian-datepicker';
 
 const DailyPropertyInput = (props) => {
+  const styles = {
+    calendarContainer: "calendarContainer",
+    dayPickerContainer: "dayPickerContainer",
+    monthsList: "monthsList",
+    daysOfWeek: "daysOfWeek",
+    dayWrapper: "dayWrapper",
+    selected: "selected",
+    heading: "heading",
+  };
     const { value, day, date } = props.dayProperty;
+    const getInput = (value) => {
+      console.log(value);
+    }
     return (
       <form className={classes.rowInput}>
         <div className={classes.dayStyle}>
@@ -27,9 +38,7 @@ const DailyPropertyInput = (props) => {
         </div>
 
         <div className={classes.calendar}>
-          <DatePicker
-            
-          />
+          <DatePicker calendarStyles={styles} name="date" onChange={(value) =>getInput(value)}/>
           <span className={`${classes.green} ${classes.icon}`}>
             <i className="fas fa-calendar-day"></i>
           </span>
