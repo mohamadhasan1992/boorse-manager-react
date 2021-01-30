@@ -1,6 +1,5 @@
 import React from 'react';
 import DailyPropertyList from "../DailyPropertyList/DailyPropertyList";
-import classes from './../DailyProperty.module.css';
 
 const DayList = (props) => {
     return (
@@ -8,7 +7,14 @@ const DayList = (props) => {
         
         <th>
           {props.properties.map((property) => {
-            return <DailyPropertyList propertyValue={property} />;
+            return (
+              <DailyPropertyList
+                key={property.id}
+                propertyValue={property}
+                delete={() => props.delete(property.id)}
+                edit={() => props.edit(property.id)}
+              />
+            );
           })}
         </th>
       </table>

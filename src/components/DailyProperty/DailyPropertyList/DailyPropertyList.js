@@ -3,7 +3,6 @@ import classes from '../DailyProperty.module.css';
 
 const DailyPropertyList = (props) => {
     const { value,date,day } = props.propertyValue;
-    console.log(value);
     return (
       <tr className={classes.list}>
         <div className={classes.pl5}>{day}</div>
@@ -12,11 +11,11 @@ const DailyPropertyList = (props) => {
         <div className={classes.iconBox}>
           <span
             className={`${classes.red} ${classes.pl5}`}
-            onClick={props.buySubmit}
+            onClick={props.delete}
           >
             <i className="fas fa-trash"></i>
           </span>
-          <span className={classes.grey} onClick={props.clearInput}>
+          <span className={classes.grey} onClick={props.edit}>
             <i className="fas fa-eraser"></i>
           </span>
         </div>

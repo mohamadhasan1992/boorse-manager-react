@@ -51,16 +51,16 @@ class Property extends Component {
     },
     displayInput: "stock",
     propertyResult: "-",
-    todayProperty: "",
-    dayNames: ["چهارشنبه", "سه شنبه", "دوشنبه", "یکشنبه", "شنبه"],
-    dailyProperties: [
-      { value: "120000", date: "99.11.12", day: "شنبه" },
-      { value: "250000", date: "99.10.19", day: "یکشنبه" },
-      { value: "370000", date: "99.6.20", day: "دوشنبه" },
-      { value: "680000", date: "99.2.22", day: "سه شنبه" },
-      { value: "490000", date: "99.5.22", day: "چهارشنبه" },
-    ],
+    dayProperty: {
+      id: "",
+      value: "",
+      date: "",
+      day: "شنبه",
+      edit:false
+    },
+    dayProperties: [],
   };
+  ///wholeProperty section ///////////////////////////////////////////
   grabInitProperty = (e) => {
     const enteredValue = e.target.value.toString();
     this.setState({ initialValue: enteredValue });
@@ -85,6 +85,8 @@ class Property extends Component {
       selectedDifficulty: checked,
     });
   };
+  ///stock section ///////////////////////////////////////////
+
   inputGetter = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -126,27 +128,24 @@ class Property extends Component {
       newProperty.buyPurpose
     ) {
       const updatedProperties = [...this.state.properties, newProperty];
-      this.setState(
-        {
-          properties: updatedProperties,
-          property: {
-            id: "",
-            name: "",
-            buyDate: "",
-            buyValue: "",
-            buyPrice: "",
-            buyPurpose: "",
-            sellDate: "",
-            sellValue: "",
-            sellPrice: "",
-            sellPurpose: "",
-            bought: false,
-            edit: false,
-            completed: false,
-          },
+      this.setState({
+        properties: updatedProperties,
+        property: {
+          id: "",
+          name: "",
+          buyDate: "",
+          buyValue: "",
+          buyPrice: "",
+          buyPurpose: "",
+          sellDate: "",
+          sellValue: "",
+          sellPrice: "",
+          sellPurpose: "",
+          bought: false,
+          edit: false,
+          completed: false,
         },
-        () => console.log(this.state)
-      );
+      });
     } else {
       alert("error");
       this.clearInputHandler();
@@ -193,8 +192,59 @@ class Property extends Component {
   layoutSelector = (e) => {
     this.setState({ displayInput: e.target.value });
   };
-  //selecting layout button
-  //if displayInput = stock => active === false
+  //working on property part
+  getDayInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    const newDayProperty = {
+      ...this.state.dayProperty,
+      [name]: value,
+    };
+    if(!newDayProperty.edit){
+      newDayProperty.id = uuidv4();
+    }else{
+      newDayProperty.edit = false;
+    }
+    this.setState({ dayProperty: newDayProperty });
+  };
+  submitDayInput = (e) => {
+    e.preventDefault();
+    const newDayProperty = this.state.dayProperty;
+    const updatedDayProperties = [...this.state.dayProperties, newDayProperty];
+    this.setState({
+      dayProperties: updatedDayProperties,
+      dayProperty: {
+        id: "",
+        value: "",
+        date: "",
+        day: "",
+      },
+    });
+  };
+  clearDayInput = () => {
+    this.setState({
+      dayProperty: {
+        id: "",
+        value: "",
+        date: "",
+        day: "",
+      },
+    });
+  };
+  deleteDayProperty = (id) => {
+    const filteredDayProperties = this.state.dayProperties.filter(item => item.id !== id);
+    this.setState({dayProperties:filteredDayProperties});
+  };
+  editDayProperty = (id) => {
+    const selectedDayProperty = this.state.dayProperties.find(
+      (item) => item.id === id
+    );
+    const filteredDayProperties = this.state.dayProperties.filter(
+      (item) => item.id !== id
+    );
+    selectedDayProperty.edit = true;
+    this.setState({dayProperties:filteredDayProperties,dayProperty:selectedDayProperty});
+  };
   render() {
     return (
       <>
@@ -230,8 +280,17 @@ class Property extends Component {
         )}
         {this.state.displayInput === "dailyProperty" && (
           <>
-            <DailyPropertyInput todayProperty={this.state.todayProperty} />
-            <DayTable properties={this.state.dailyProperties} />
+            <DailyPropertyInput
+              dayProperty={this.state.dayProperty}
+              getInput={this.getDayInput}
+              submitInput={this.submitDayInput}
+              clearInput={this.clearDayInput}
+            />
+            <DayTable
+              properties={this.state.dayProperties}
+              delete={this.deleteDayProperty}
+              edit={this.editDayProperty}
+            />
           </>
         )}
       </>

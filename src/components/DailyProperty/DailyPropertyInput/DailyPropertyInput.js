@@ -1,28 +1,60 @@
 import React from 'react';
 import classes from '../DailyProperty.module.css';
+import dateClasses from "../Datepicker.module.css";
+import {Calendar, DatePicker} from 'react-persian-datepicker';
 
 const DailyPropertyInput = (props) => {
-    const {todayProperty} = props.todayProperty;
+    const { value, day, date } = props.dayProperty;
     return (
       <form className={classes.rowInput}>
-        <input
-          className={`${classes.inputStyle} ${classes.ml5}`}
-          type="number"
-          placeholder="دارایی امروز"
-          value={todayProperty}
-          name="todayProperty"
-          onChange={props.getInput}
-        ></input>
-        <div className={classes.iconBox}>
-          <span
-            className={`${classes.green} ${classes.pl5}`}
-            onClick={props.buySubmit}
+        <div className={classes.dayStyle}>
+          <lable for="days" className={classes.pl5}>
+            روز هفته
+          </lable>
+          <select
+            name="day"
+            className={classes.dropStyle}
+            onChange={props.getInput}
           >
-            <i className="fas fa-check"></i>
+            <option value="شنبه" selected>
+              شنبه
+            </option>
+            <option value="یکشنبه">یکشنبه</option>
+            <option value="دوشنبه">دوشنبه</option>
+            <option value="سه شنبه">سه شنبه</option>
+            <option value="چهارشنبه">چهارشنبه</option>
+          </select>
+        </div>
+
+        <div className={classes.calendar}>
+          <DatePicker
+            
+          />
+          <span className={`${classes.green} ${classes.icon}`}>
+            <i className="fas fa-calendar-day"></i>
           </span>
-          <span className={classes.grey} onClick={props.clearInput}>
-            <i className="fas fa-eraser"></i>
-          </span>
+        </div>
+        <div className={classes.propertyStyle}>
+          <input
+            className={`${classes.inputStyle} ${classes.ml5}`}
+            type="number"
+            placeholder="دارایی امروز"
+            value={value}
+            name="value"
+            onChange={props.getInput}
+          ></input>
+
+          <div className={classes.iconBox}>
+            <span
+              className={`${classes.green} ${classes.pl5}`}
+              onClick={props.submitInput}
+            >
+              <i className="fas fa-check"></i>
+            </span>
+            <span className={classes.grey} onClick={props.clearInput}>
+              <i className="fas fa-eraser"></i>
+            </span>
+          </div>
         </div>
       </form>
     );
