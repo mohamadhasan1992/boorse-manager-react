@@ -54,14 +54,14 @@
     margin-left: .5rem;
 }
 .green{
-    color: green;
+    color: #44bd32;
     cursor: pointer;
 }
 .red{
-    color: red;
+    color:#e84118;
     cursor: pointer;
 }
 .grey{
-    color: grey;
+    color: #0097e6;
     cursor: pointer;
 }

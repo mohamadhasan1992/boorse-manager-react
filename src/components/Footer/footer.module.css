@@ -1,7 +1,8 @@
 .Content{
-    background-color: grey;
+    background-color: #2f3640;
     height: 20vh;
     text-align: center;
+    color: #dcdde1;
 }
 .list{
     padding-top: 2rem;

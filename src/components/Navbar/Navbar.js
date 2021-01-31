@@ -9,7 +9,18 @@ class Navbar extends Component{
           <div dir="rtl" className={classes.Content}>
             <p>نرم افزار مدیریت سرمایه</p>
             <img className={classes.logo} src={logo} alt="Logo" />
-            <p>محمدحسن تبریزی</p>
+            <div>
+              <button
+                className={`${classes.signInBtn} ${classes.ml5}`}
+              >
+                ورود
+              </button>
+              <button
+                className={`${classes.signInBtn} ${classes.signInBtnActive}`}
+              >
+                خروج
+              </button>
+            </div>
           </div>
         );
     }

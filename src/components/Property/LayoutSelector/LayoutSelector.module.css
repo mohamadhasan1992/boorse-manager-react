@@ -22,8 +22,8 @@
     transform: translateY(-1px);
 }
 .btnActive{
-    background-color: grey;
-    color: #fff;
+    background-color: #192a56;
+    color: #dcdde1;
 }
 .btn:focus{
     outline-style: none;

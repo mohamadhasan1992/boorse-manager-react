@@ -53,17 +53,18 @@
     padding-left: .5rem;
 }
 .green{
-    color: green;
-}
-.red{
-    color: red;
-}
-.grey{
-    color: grey;
-}
-i{
+    color: #44bd32;
     cursor: pointer;
 }
+.red{
+    color:#e84118;
+    cursor: pointer;
+}
+.grey{
+    color: #0097e6;
+    cursor: pointer;
+}
+
 
 .list{
     line-height: 2rem;

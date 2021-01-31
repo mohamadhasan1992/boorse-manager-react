@@ -1,12 +1,39 @@
 .Content{
     padding: 0 .5rem;
-    background-color:rgb(124, 119, 119);
+    background-color: #2f3640;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 3rem;
+    color: #dcdde1;
 }
 .logo{
     
     width: 3rem;
     height: 3rem;
+}
+.signInBtn{
+    background-color: #192a56;
+    color: #f5f6fa;
+    cursor: pointer;
+    font-size: .9rem;
+    font-family: lalezar;
+    padding: .3rem 2rem;
+    border-radius: 15px;
+    border: .5px solid #f5f6fa;
+    transform: translateY(0);
+    transition: all 1ms;
+}
+.signInBtn:hover{
+    transform: translateY(-1px);
+}
+.signInBtnActive{
+    background-color: #fff;
+    color: #2f3640;
+}
+.signInBtn:focus{
+    outline-style: none;
+}
+.ml5{
+    margin-left: .5rem;
 }
