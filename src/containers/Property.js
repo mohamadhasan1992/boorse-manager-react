@@ -12,28 +12,39 @@ import moment from "moment-jalaali";
 
 class Property extends Component {
   state = {
-    initialValue: "",
+    initialValue: "1000000",
     difficulty: [
       {
-        id: 2,
+        id: 1,
         difficultyName: "بالا",
         difficultyStatus: false,
         difficultyValue: "high",
+        devisionNumber: 2,
       },
       {
-        id: 3,
+        id: 2,
         difficultyName: "متوسط",
         difficultyStatus: true,
         difficultyValue: "medium",
+        devisionNumber: 3,
       },
       {
-        id: 4,
+        id: 3,
         difficultyName: "کم",
         difficultyStatus: false,
         difficultyValue: "low",
+        devisionNumber: 4,
       },
     ],
-    selectedDifficulty: "medium",
+    selectedDifficulty: {
+      id: 2,
+      difficultyName: "متوسط",
+      difficultyStatus: true,
+      difficultyValue: "medium",
+      devisionNumber: 3,
+    },
+    showResultBoard:false,
+    propertiesSum:0,
     properties: [],
     property: {
       id: "",
@@ -51,13 +62,12 @@ class Property extends Component {
       completed: false,
     },
     displayInput: "stock",
-    propertyResult: "-",
     dayProperty: {
       id: "",
       value: "",
       date: "",
       day: "شنبه",
-      edit:false
+      edit: false,
     },
     dayProperties: [],
   };
@@ -87,7 +97,7 @@ class Property extends Component {
     });
   };
   ///stock section ///////////////////////////////////////////
-
+  //grab each input
   inputGetter = (e) => {
     e.preventDefault();
     const name = e.target.name;
@@ -107,13 +117,10 @@ class Property extends Component {
     }
     this.setState({ property: newProperty });
   };
+  //
   submitWholeInput = (e) => {
     e.preventDefault();
-    if (this.state.initialValue) {
-      alert(`you should have ${this.state.selectedDifficulty.id} property `);
-    } else {
-      alert("Error");
-    }
+    this.setState({showResultBoard : true});
   };
   clearWholeInput = () => {
     this.setState({ initialValue: "" });
@@ -128,8 +135,11 @@ class Property extends Component {
       newProperty.buyPrice &&
       newProperty.buyPurpose
     ) {
+      const propertyVal = newProperty.buyValue * newProperty.buyPrice;
+      const propertiesSum = this.state.propertiesSum + propertyVal;
       const updatedProperties = [...this.state.properties, newProperty];
       this.setState({
+        propertiesSum,
         properties: updatedProperties,
         property: {
           id: "",
@@ -152,6 +162,7 @@ class Property extends Component {
       this.clearInputHandler();
     }
   };
+  //clear all the property inputs
   clearInputHandler = () => {
     this.setState({
       property: {
@@ -177,6 +188,7 @@ class Property extends Component {
     );
     this.setState({ properties: filteredProperties });
   };
+  //edit an bought property
   editHandler = (id) => {
     const filteredProperties = this.state.properties.filter(
       (property) => property.id !== id
@@ -193,13 +205,14 @@ class Property extends Component {
   layoutSelector = (e) => {
     this.setState({ displayInput: e.target.value });
   };
-  //working on property part
+  //working on Dailyproperty part///////////////////////////
+  //setting date by datePicker
   setDate = (e) => {
-    const date =  moment(e).format("jYYYY/jM/jD") ;
-    const newDayProperty = {...this.state.dayProperty,date};
-    this.setState({dayProperty: newDayProperty});  
-    
-    }
+    const date = moment(e).format("jYYYY/jM/jD");
+    const newDayProperty = { ...this.state.dayProperty, date };
+    this.setState({ dayProperty: newDayProperty });
+  };
+  //getting info about a DailyProperty
   getDayInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -207,10 +220,10 @@ class Property extends Component {
       ...this.state.dayProperty,
       [name]: value,
     };
-    if(!newDayProperty.edit){
+    if (!newDayProperty.edit) {
       this.setDate();
       newDayProperty.id = uuidv4();
-    }else{
+    } else {
       newDayProperty.edit = false;
     }
     this.setState({ dayProperty: newDayProperty });
@@ -240,8 +253,10 @@ class Property extends Component {
     });
   };
   deleteDayProperty = (id) => {
-    const filteredDayProperties = this.state.dayProperties.filter(item => item.id !== id);
-    this.setState({dayProperties:filteredDayProperties});
+    const filteredDayProperties = this.state.dayProperties.filter(
+      (item) => item.id !== id
+    );
+    this.setState({ dayProperties: filteredDayProperties });
   };
   editDayProperty = (id) => {
     const selectedDayProperty = this.state.dayProperties.find(
@@ -251,14 +266,19 @@ class Property extends Component {
       (item) => item.id !== id
     );
     selectedDayProperty.edit = true;
-    this.setState({dayProperties:filteredDayProperties,dayProperty:selectedDayProperty});
+    this.setState({
+      dayProperties: filteredDayProperties,
+      dayProperty: selectedDayProperty,
+    });
   };
   render() {
     return (
       <>
         <WholeProperty
+          showResultBoard={this.state.showResultBoard}
           initValue={this.state.initialValue}
           difficulty={this.state.difficulty}
+          selectedDifficulty={this.state.selectedDifficulty}
           change={this.grabInitProperty}
           submitWholeInput={this.submitWholeInput}
           clearWholeInput={this.clearWholeInput}
@@ -283,7 +303,7 @@ class Property extends Component {
               handleEdit={this.editHandler}
               handleDelete={this.deleteHandler}
             />
-            <PropertyResult propertyResult={this.state.propertyResult} />
+            <PropertyResult propertyResult={this.state.propertiesSum} />
           </>
         )}
         {this.state.displayInput === "dailyProperty" && (

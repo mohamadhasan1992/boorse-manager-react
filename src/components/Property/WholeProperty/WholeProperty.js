@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import classes from '../WholeProperty/wholeProperty.module.css';
-import CheckboxComponent from './CheckboxComponent'
+import CheckboxComponent from './CheckBoxComponent/CheckboxComponent';
+import BoardResult from './ResultBoard/ResultBoard';
 
 
 const WholeProperty = (props) => {
@@ -13,7 +14,7 @@ const WholeProperty = (props) => {
             type="dropdown"
             className={`${classes.inputStyle} ${classes.ml5}`}
             placeholder={props.initValue}
-            value={props.initValue}
+            //value={props.initValue}
             onChange={props.change}
           ></input>
           <div className={classes.iconBox}>
@@ -32,22 +33,24 @@ const WholeProperty = (props) => {
           <div className={classes.paddingLeft}>میزان ریسک پذیری</div>
 
           <form className={classes.formStyle}>
-            {props.difficulty.map(item => {
-              return <CheckboxComponent key={item.id} difficulty={item} selectedCheckbox={props.selectHandler} />;
+            {props.difficulty.map((item) => {
+              return (
+                <CheckboxComponent
+                  key={item.id}
+                  difficulty={item}
+                  selectedCheckbox={props.selectHandler}
+                />
+              );
             })}
-            
           </form>
         </div>
       </div>
-      <div dir="rtl" className={classes.leftBox}>
-        <p>
-          سبد پیشنهادی شما شامل 4 سهم با نسبت های 25، 25، 10 و 30 درصد می باشد.
-        </p>
-        <p>مقدار سرمایه ناظر: 10درصد</p>
-        <h6 className={classes.heading6}>
-          لطفا جزییات اطلاعات سهام خریداری شده را در قسمت مربوطه وارد کنید.
-        </h6>
-      </div>
+      {props.showResultBoard && (
+        <BoardResult
+          initValue={props.initValue}
+          devideBy={props.selectedDifficulty.devisionNumber}
+        />
+      )}
     </div>
   );
 }

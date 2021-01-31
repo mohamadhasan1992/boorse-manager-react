@@ -43,7 +43,6 @@ const DailyPropertyInput = (props) => {
         <div className={classes.calendar}>
           <DatePicker
             calendarStyles={styles}
-            ref={dateContainer}
             onChange={props.setDate}
           />
           <span className={`${classes.green} ${classes.icon}`}>
