@@ -8,6 +8,7 @@ import PropertyInput from '../components/Property/PropertyInput/PropertyInput';
 import LayoutSelector from '../components/Property/LayoutSelector/LayoutSelector';
 import DailyPropertyInput from '../components/DailyProperty/DailyPropertyInput/DailyPropertyInput';
 import DayTable from "../components/DailyProperty/DayTable/DayTable";
+import moment from "moment-jalaali";
 
 class Property extends Component {
   state = {
@@ -193,6 +194,12 @@ class Property extends Component {
     this.setState({ displayInput: e.target.value });
   };
   //working on property part
+  setDate = (e) => {
+    const date =  moment(e).format("jYYYY/jM/jD") ;
+    const newDayProperty = {...this.state.dayProperty,date};
+    this.setState({dayProperty: newDayProperty});  
+    
+    }
   getDayInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -201,6 +208,7 @@ class Property extends Component {
       [name]: value,
     };
     if(!newDayProperty.edit){
+      this.setDate();
       newDayProperty.id = uuidv4();
     }else{
       newDayProperty.edit = false;
@@ -285,6 +293,7 @@ class Property extends Component {
               getInput={this.getDayInput}
               submitInput={this.submitDayInput}
               clearInput={this.clearDayInput}
+              setDate={this.setDate}
             />
             <DayTable
               properties={this.state.dayProperties}

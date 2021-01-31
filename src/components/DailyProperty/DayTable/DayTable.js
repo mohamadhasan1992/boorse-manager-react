@@ -13,6 +13,7 @@ const DayList = (props) => {
                 propertyValue={property}
                 delete={() => props.delete(property.id)}
                 edit={() => props.edit(property.id)}
+                setDate={props.setDate}
               />
             );
           })}
