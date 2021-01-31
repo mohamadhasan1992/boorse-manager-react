@@ -1,10 +1,10 @@
 import React from "react";
 import classes from '../DailyProperty.module.css';
 
-const DailyPropertyList = (props) => {
+const DailyPropertyItem = (props) => {
     const { value,date,day } = props.propertyValue;
     return (
-      <tr className={classes.list}>
+      <div className={classes.tableItem}>
         <div className={classes.pl5}>{day}</div>
         <div className={classes.pl5}>{date}</div>
         <div className={classes.pl10}>{value}</div>
@@ -19,7 +19,7 @@ const DailyPropertyList = (props) => {
             <i className="fas fa-eraser"></i>
           </span>
         </div>
-      </tr>
+      </div>
     );
 };
-export default DailyPropertyList;
+export default DailyPropertyItem;

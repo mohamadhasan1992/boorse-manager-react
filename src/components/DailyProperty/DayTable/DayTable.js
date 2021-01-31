@@ -1,24 +1,25 @@
 import React from 'react';
-import DailyPropertyList from "../DailyPropertyList/DailyPropertyList";
+import DailyPropertyItem from "../DailyPropertyItem/DailyPropertyItem";
+import classes from "../DailyProperty.module.css";
 
 const DayList = (props) => {
+  
     return (
-      <table>
-        
-        <th>
-          {props.properties.map((property) => {
-            return (
-              <DailyPropertyList
+      <div className={classes.table}>
+        {props.properties.map((property, index) => {
+          return (
+            <div >
+              <DailyPropertyItem
                 key={property.id}
                 propertyValue={property}
                 delete={() => props.delete(property.id)}
                 edit={() => props.edit(property.id)}
                 setDate={props.setDate}
               />
-            );
-          })}
-        </th>
-      </table>
+            </div>
+          );
+        })}
+      </div>
     );
 }
 
