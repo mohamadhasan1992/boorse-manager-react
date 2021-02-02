@@ -71,6 +71,9 @@ class Property extends Component {
     },
     dayProperties: [],
   };
+  calcBuyValue = (obj) => {
+    return obj.buyValue * obj.buyPrice
+  }
   ///wholeProperty section ///////////////////////////////////////////
   grabInitProperty = (e) => {
     const enteredValue = e.target.value.toString();
@@ -135,8 +138,8 @@ class Property extends Component {
       newProperty.buyPrice &&
       newProperty.buyPurpose
     ) {
-      const propertyVal = newProperty.buyValue * newProperty.buyPrice;
-      const propertiesSum = this.state.propertiesSum + propertyVal;
+      
+      const propertiesSum = this.state.propertiesSum + this.calcBuyValue(newProperty);
       const updatedProperties = [...this.state.properties, newProperty];
       this.setState({
         propertiesSum,
@@ -183,10 +186,13 @@ class Property extends Component {
     });
   };
   deleteHandler = (id) => {
+    const selectedProperty = this.state.properties.find(item => item.id=== id);
     const filteredProperties = this.state.properties.filter(
       (property) => property.id !== id
     );
-    this.setState({ properties: filteredProperties });
+    const value = this.calcBuyValue(selectedProperty);
+    const updatedPropertiesSum = this.state.propertiesSum - value;
+    this.setState({ properties: filteredProperties ,propertiesSum:updatedPropertiesSum});
   };
   //edit an bought property
   editHandler = (id) => {
@@ -197,9 +203,13 @@ class Property extends Component {
       (property) => property.id === id
     );
     editedProperty.edit = true;
+    const updatedPropertyValue =
+      this.state.propertiesSum - this.calcBuyValue(editedProperty);
     this.setState({
       properties: [...filteredProperties],
       property: editedProperty,
+      propertiesSum:updatedPropertyValue
+
     });
   };
   layoutSelector = (e) => {

@@ -61,7 +61,7 @@
     cursor: pointer;
 }
 .grey{
-    color: #0097e6;
+    color: #192a56;
     cursor: pointer;
 }
 
@@ -73,8 +73,8 @@
 }
 .dropStyle{
     font-family: lalezar;
-    border-radius: 15px;
-    border: 1px solid #000;
+    border-radius: 10px;
+    border: 1.5px solid #000;
     padding: .1rem 1rem;
     margin-left: .5rem;
 }

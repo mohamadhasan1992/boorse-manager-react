@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import classes from './Layout.module.css';
 
-
+//a component that i use inside App.js
 //layout has 2 section
 //1- components
 //2-components that we want to wrap with this layout
@@ -18,3 +18,4 @@ const Layout = (props) => (
 );
 
 export default Layout;
+
