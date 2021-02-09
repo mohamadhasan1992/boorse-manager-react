@@ -80,24 +80,18 @@ class Property extends Component {
     this.setState({ initialValue: enteredValue });
   };
   checkboxSelectHandler = (e) => {
-    //find the checked checkbox
-    const checked = this.state.difficulty.find(
-      (item) => item.difficultyValue === e.target.value
-    );
-
-    //turn the checkedstatus => true
-    checked.difficultyStatus = true;
-    //remove it from the array
-    const filteredDifficulty = this.state.difficulty.filter(
-      (item) => item.difficultyValue !== e.target.value
-    );
-    filteredDifficulty.forEach((item) => (item.difficultyStatus = false));
-    //create updated array
-    const updatedDifficulty = [...filteredDifficulty, checked];
-    this.setState({
-      difficulty: updatedDifficulty,
-      selectedDifficulty: checked,
+    const updatedDifficultyState = this.state.difficulty.forEach((item) => {
+      if (item.difficultyValue === e.target.value) {
+        item.difficultyStatus = true;
+      } else {
+        item.difficultyStatus = false;
+      }
     });
+    this.setState({
+      updatedDifficultyState
+    },console.log(this.state));
+
+    
   };
   ///stock section ///////////////////////////////////////////
   //grab each input
@@ -288,7 +282,6 @@ class Property extends Component {
           showResultBoard={this.state.showResultBoard}
           initValue={this.state.initialValue}
           difficulty={this.state.difficulty}
-          selectedDifficulty={this.state.selectedDifficulty}
           change={this.grabInitProperty}
           submitWholeInput={this.submitWholeInput}
           clearWholeInput={this.clearWholeInput}
