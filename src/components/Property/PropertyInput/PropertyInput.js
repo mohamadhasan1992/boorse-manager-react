@@ -1,9 +1,11 @@
 import React from 'react';
 import {DatePicker} from 'react-persian-datepicker';
 import classes from "../propertyDetail.module.css";
+import  {BoorseContext} from '../../../context/context';
 
 
 const PropertyInput = (props) => {
+  
   const styles = {
     calendarContainer: "calendarContainer",
     dayPickerContainer: "dayPickerContainer",

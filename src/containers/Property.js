@@ -1,50 +1,21 @@
 import React,{Component} from 'react';
 import { v4 as uuidv4 } from "uuid";
+import Layout from '../components/Layout/Layout';
 import WholeProperty from '../components/Property/WholeProperty/WholeProperty';
 import PropertyResult from '../components/Property/PropertyResult/PropertyResult';
 import PropertyTitle from '../components/Property/PropertyTitle/PropertyTitle';
 import PropertyList from '../components/Property/PropertyList/PropertyList';
 import PropertyInput from '../components/Property/PropertyInput/PropertyInput';
 import LayoutSelector from '../components/Property/LayoutSelector/LayoutSelector';
-import DailyPropertyInput from '../components/DailyProperty/DailyPropertyInput/DailyPropertyInput';
-import DayTable from "../components/DailyProperty/DayTable/DayTable";
+import DailyPropertyContainer from '../containers/DailyProperty';
+
 import moment from "moment-jalaali";
+import axios from '../axios';
+
 
 class Property extends Component {
   state = {
-    initialValue: "1000000",
-    difficulty: [
-      {
-        id: 1,
-        difficultyName: "بالا",
-        difficultyStatus: false,
-        difficultyValue: "high",
-        devisionNumber: 2,
-      },
-      {
-        id: 2,
-        difficultyName: "متوسط",
-        difficultyStatus: true,
-        difficultyValue: "medium",
-        devisionNumber: 3,
-      },
-      {
-        id: 3,
-        difficultyName: "کم",
-        difficultyStatus: false,
-        difficultyValue: "low",
-        devisionNumber: 4,
-      },
-    ],
-    selectedDifficulty: {
-      id: 2,
-      difficultyName: "متوسط",
-      difficultyStatus: true,
-      difficultyValue: "medium",
-      devisionNumber: 3,
-    },
-    showResultBoard:false,
-    propertiesSum:0,
+    propertiesSum: 0,
     properties: [],
     property: {
       id: "",
@@ -71,28 +42,19 @@ class Property extends Component {
     },
     dayProperties: [],
   };
-  calcBuyValue = (obj) => {
-    return obj.buyValue * obj.buyPrice
-  }
-  ///wholeProperty section ///////////////////////////////////////////
-  grabInitProperty = (e) => {
-    const enteredValue = e.target.value.toString();
-    this.setState({ initialValue: enteredValue });
-  };
-  checkboxSelectHandler = (e) => {
-    const updatedDifficultyState = this.state.difficulty.forEach((item) => {
-      if (item.difficultyValue === e.target.value) {
-        item.difficultyStatus = true;
-      } else {
-        item.difficultyStatus = false;
-      }
+  componentDidMount() {
+    axios.get("/property").then((response) => {
+      const properties = response.data.data.properties;
+      this.setState({ properties });
     });
-    this.setState({
-      updatedDifficultyState
-    },console.log(this.state));
+  }
 
-    
+  calcBuyValue = (obj) => {
+    return obj.buyValue * obj.buyPrice;
   };
+  ///wholeProperty section ///////////////////////////////////////////
+  
+  
   ///stock section ///////////////////////////////////////////
   //grab each input
   inputGetter = (e) => {
@@ -115,16 +77,20 @@ class Property extends Component {
     this.setState({ property: newProperty });
   };
   //
-  submitWholeInput = (e) => {
-    e.preventDefault();
-    this.setState({showResultBoard : true});
-  };
-  clearWholeInput = () => {
-    this.setState({ initialValue: "" });
-  };
+  
+  
   buySubmitHandler = (e) => {
     e.preventDefault();
     const newProperty = { ...this.state.property };
+    if (
+      newProperty.sellDate &&
+      newProperty.sellDate &&
+      newProperty.sellValue &&
+      newProperty.sellPrice &&
+      newProperty.sellPurpose
+    ) {
+      newProperty.complete = true;
+    }
     if (
       newProperty.name &&
       newProperty.buyDate &&
@@ -132,9 +98,27 @@ class Property extends Component {
       newProperty.buyPrice &&
       newProperty.buyPurpose
     ) {
-      
-      const propertiesSum = this.state.propertiesSum + this.calcBuyValue(newProperty);
+      console.log(newProperty);
+      if (newProperty.edit) {
+        axios
+          .patch(
+            `/property/${newProperty._id}`,
+            newProperty
+          )
+          .then((response) => {
+            console.log(response);
+          });
+      } else {
+        axios
+          .post("/property", newProperty)
+          .then((response) => {
+            console.log(response);
+          });
+      }
+      const propertiesSum =
+        this.state.propertiesSum + this.calcBuyValue(newProperty);
       const updatedProperties = [...this.state.properties, newProperty];
+
       this.setState({
         propertiesSum,
         properties: updatedProperties,
@@ -180,13 +164,21 @@ class Property extends Component {
     });
   };
   deleteHandler = (id) => {
-    const selectedProperty = this.state.properties.find(item => item.id=== id);
+    axios
+      .delete(`/property/${id}`)
+      .then((response) => console.log(response));
+    const selectedProperty = this.state.properties.find(
+      (item) => item.id === id
+    );
     const filteredProperties = this.state.properties.filter(
       (property) => property.id !== id
     );
     const value = this.calcBuyValue(selectedProperty);
     const updatedPropertiesSum = this.state.propertiesSum - value;
-    this.setState({ properties: filteredProperties ,propertiesSum:updatedPropertiesSum});
+    this.setState({
+      properties: filteredProperties,
+      propertiesSum: updatedPropertiesSum,
+    });
   };
   //edit an bought property
   editHandler = (id) => {
@@ -197,13 +189,13 @@ class Property extends Component {
       (property) => property.id === id
     );
     editedProperty.edit = true;
+
     const updatedPropertyValue =
       this.state.propertiesSum - this.calcBuyValue(editedProperty);
     this.setState({
       properties: [...filteredProperties],
       property: editedProperty,
-      propertiesSum:updatedPropertyValue
-
+      propertiesSum: updatedPropertyValue,
     });
   };
   layoutSelector = (e) => {
@@ -277,22 +269,14 @@ class Property extends Component {
   };
   render() {
     return (
-      <>
-        <WholeProperty
-          showResultBoard={this.state.showResultBoard}
-          initValue={this.state.initialValue}
-          difficulty={this.state.difficulty}
-          change={this.grabInitProperty}
-          submitWholeInput={this.submitWholeInput}
-          clearWholeInput={this.clearWholeInput}
-          selectHandler={this.checkboxSelectHandler}
-        />
+      <Layout>
         <LayoutSelector
           changeLayout={this.layoutSelector}
           active={this.state.displayInput}
         />
         {this.state.displayInput === "stock" && (
           <>
+            <WholeProperty />
             <PropertyTitle />
             <PropertyInput
               property={this.state.property}
@@ -302,7 +286,6 @@ class Property extends Component {
             />
 
             <PropertyList
-              properties={this.state.properties}
               handleEdit={this.editHandler}
               handleDelete={this.deleteHandler}
             />
@@ -310,22 +293,17 @@ class Property extends Component {
           </>
         )}
         {this.state.displayInput === "dailyProperty" && (
-          <>
-            <DailyPropertyInput
-              dayProperty={this.state.dayProperty}
-              getInput={this.getDayInput}
-              submitInput={this.submitDayInput}
-              clearInput={this.clearDayInput}
-              setDate={this.setDate}
-            />
-            <DayTable
-              properties={this.state.dayProperties}
-              delete={this.deleteDayProperty}
-              edit={this.editDayProperty}
-            />
-          </>
+          <DailyPropertyContainer dayProperty={this.state.property}
+          getDayInput={this.submitDayInput}
+          clearDayInput={this.clearDayInput}
+          setDate={this.setDate}
+          dayProperties={this.state.dayProperties}
+          deleteDayProperty={this.deleteDayProperty}
+          editDayProperty={this.editDayProperty}
+
+           />
         )}
-      </>
+      </Layout>
     );
   }
 }

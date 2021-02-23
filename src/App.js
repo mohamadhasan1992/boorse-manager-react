@@ -1,16 +1,26 @@
-import React , {Component} from 'react';
-import Layout from './components/Layout/Layout';
+import React from 'react';
 import Property from './containers/Property';
+import Login from './containers/Login';
+import Error from './containers/Error';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 
-class App extends Component {
-  render(){
+const app = () => {
     return (
-      <Layout>
-        <Property />
-      </Layout>
+      <Router>
+        <Switch>
+            <Route path="/" exact={true}>
+              <Property></Property>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="*">
+              <Error></Error>
+            </Route>
+        </Switch>
+      </Router>
     );
-  }
 }
 
-export default App;
+export default app;

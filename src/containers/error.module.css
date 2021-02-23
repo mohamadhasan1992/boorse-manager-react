@@ -1,0 +1,25 @@
+.Content{
+    height: 100vh;
+    background-color: #2f3640;
+    color: #dcdde1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    background-color: #192a56;
+    color: #f5f6fa;
+    cursor: pointer;
+    font-size: .9rem;
+    font-family: lalezar;
+    padding: .3rem 2rem;
+    border-radius: 15px;
+    border: .5px solid transparent;
+    transform: translateY(0);
+    transition: all 3ms ease-in-out;
+    text-decoration: none;
+}
+.btn:hover{
+    transform: translateY(-1px);
+}

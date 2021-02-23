@@ -1,17 +1,16 @@
 .Content{
-
 }
 .rowInput{
-    padding: .5rem;
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
+    padding-top: .5rem;
+    display: flex;
+    justify-content: space-between;
+
 }
 .dayStyle{
-    grid-column: 1/3;
 }
 .calendar{
-    grid-column: 3/5;
     position: relative;
+    margin-left: .5rem;
 }
 
 .datePicker{
@@ -26,19 +25,27 @@
 .icon{
     position: absolute;
     top: .1rem;
-    left: 2.5rem;
+    left: .5rem;
     
 }
 .propertyStyle{
-    grid-column: 5/9;
     display: flex;
 }
 .inputStyle{
     width:10rem;
-    border-radius: 7px;
-    padding: 0 .5rem;
+    border-radius: 10px;
+    padding: .1rem .5rem;
     font-family: lalezar;
     /* grid-column: 1/2; */
+}
+.dropStyle{
+    font-family: lalezar;
+    border-radius: 10px;
+    border: 1.5px solid #000;
+    padding: .1rem.5rem;
+}
+.dropStyle:focus{
+    outline: none;
 }
 .iconBox{
     display: flex;
@@ -49,7 +56,12 @@
 .pl10{
     padding-left: 1rem;
 }
+.itemWidth{
+    width: 5rem;
+}
 .pl5{
+    
+    box-sizing: border-box;
     padding-left: .5rem;
 }
 .green{
@@ -71,24 +83,14 @@
     display: flex;
     justify-content: space-between;
 }
-.dropStyle{
-    font-family: lalezar;
-    border-radius: 10px;
-    border: 1.5px solid #000;
-    padding: .1rem 1rem;
-    margin-left: .5rem;
-}
-.dropStyle:focus{
-    outline: none;
-}
+
 .table{
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(5,1fr);
+    display: flex;
+    flex-direction: column;
     
     
 }
 .tableItem{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
 }

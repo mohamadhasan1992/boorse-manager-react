@@ -1,11 +1,14 @@
 import React from 'react';
 import {useRef} from "react";
 import classes from '../DailyProperty.module.css';
-import {Calendar, DatePicker} from 'react-persian-datepicker';
+import {DatePicker} from 'react-persian-datepicker';
+import {BoorseContext} from '../../../context/context';
 
 
 
 const DailyPropertyInput = (props) => {
+  const {dailyProperty} = React.useContext(BoorseContext);
+  console.log(dailyProperty);
   const styles = {
     calendarContainer: "calendarContainer",
     dayPickerContainer: "dayPickerContainer",
@@ -15,16 +18,13 @@ const DailyPropertyInput = (props) => {
     selected: "selected",
     heading: "heading",
   };
-    const { value, day, date } = props.dayProperty;
-    const dateContainer = useRef(null);
+    const { value } = props.dayProperty;
     
     
     return (
       <form className={classes.rowInput}>
         <div className={classes.dayStyle}>
-          <lable for="days" className={classes.pl5}>
-            روز هفته
-          </lable>
+          
           <select
             name="day"
             className={classes.dropStyle}

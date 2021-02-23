@@ -1,22 +1,25 @@
-import React,{Component,useState} from 'react';
+import React from 'react';
 import PropertyBought from './PropertyBought/PropertyBought';
 import PropertyCompleted from './PropertyCompleted/PropertyCompleted';
+import {BoorseContext} from '../../../context/context';
 
-class PropertyList extends Component {
-  submitCompleter = (id) => {
+const PropertyList = () => {
+  const {properties} = React.useContext(BoorseContext);
+  
+  const submitCompleter = (id) => {
     console.log(id);
   };
-  completeChangeHandler = () => {
+  const completeChangeHandler = () => {
       console.log("hello world");
   };
-  render() {
     return (
       <>
         {
-            this.props.properties.map((property) => {
-                if (property.completed) {
+            properties.map((property) => {
+                if (property.complete) {
                   return (
                     <PropertyCompleted
+                      key={property.id}
                       property={property}
                       deleteProperty={() => this.props.handleDelete(property.id)}
                       editProperty={() => this.props.handleEdit(property.id)}
@@ -37,7 +40,6 @@ class PropertyList extends Component {
         }
       </>
     );
-  }
 }
 
 export default PropertyList;

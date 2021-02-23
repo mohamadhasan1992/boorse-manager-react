@@ -8,7 +8,10 @@
     color: #dcdde1;
 }
 .logo{
-    
+    box-sizing: border-box;
+    margin: 0.1rem;
+    background-color: #fff;
+    border-radius: 10px;
     width: 3rem;
     height: 3rem;
 }
@@ -19,10 +22,11 @@
     font-size: .9rem;
     font-family: lalezar;
     padding: .3rem 2rem;
-    border-radius: 15px;
-    border: .5px solid #f5f6fa;
+    border-radius: 20px;
+    border: 2px solid #fff;
     transform: translateY(0);
-    transition: all 1ms;
+    transition: all 3ms ease-in-out;
+    text-decoration: none;
 }
 .signInBtn:hover{
     transform: translateY(-1px);
@@ -36,4 +40,9 @@
 }
 .ml5{
     margin-left: .5rem;
+}
+.userPhoto{
+    border-radius: 50px;
+    border: 2px solid #fff;
+    padding: .3rem;
 }

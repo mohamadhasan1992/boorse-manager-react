@@ -5,7 +5,7 @@ const DailyPropertyItem = (props) => {
     const { value,date,day } = props.propertyValue;
     return (
       <div className={classes.tableItem}>
-        <div className={classes.pl5}>{day}</div>
+        <div className={`${classes.pl5} ${classes.itemWidth}`}>{day}</div>
         <div className={classes.pl5}>{date}</div>
         <div className={classes.pl10}>{value}</div>
         <div className={classes.iconBox}>
