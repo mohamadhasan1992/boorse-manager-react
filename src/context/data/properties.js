@@ -2,7 +2,7 @@ const propertyList = [
     {
       _id: "6023b4462ec25509f4ad2a03",
       id: "122",
-      name: "قثابت",
+      name: "gesabat",
       buyDate: 16,
       buyValue: 200,
       buyPrice: 3200,
@@ -19,7 +19,7 @@ const propertyList = [
     {
       _id: "6023c031d790d00e4827e437",
       id: "1235",
-      name: "مفاخر",
+      name: "mafaxer",
       buyDate: 12,
       buyValue: 200,
       buyPrice: 3200,
@@ -36,7 +36,7 @@ const propertyList = [
     {
       _id: "60311beed56a0a0420be944b",
       id: "a21ffb06-3b68-4768-9c3c-43bb00c41c3a",
-      name: "فنوال",
+      name: "fanoval",
       buyDate: 12,
       buyValue: 12121,
       buyPrice: 21211,

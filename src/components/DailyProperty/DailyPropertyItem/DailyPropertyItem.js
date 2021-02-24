@@ -6,7 +6,7 @@ const DailyPropertyItem = (props) => {
     return (
       <div className={classes.tableItem}>
         <div className={`${classes.pl5} ${classes.itemWidth}`}>{day}</div>
-        <div className={classes.pl5}>{date}</div>
+        <div className={classes.pl5}>{date.split("T")[0]}</div>
         <div className={classes.pl10}>{value}</div>
         <div className={classes.iconBox}>
           <span

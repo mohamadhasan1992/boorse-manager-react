@@ -20,7 +20,7 @@ ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 
 const DailyPropertyChart = ({data}) => {
-    console.log(data);
+    
 
     // STEP 3 - Creating the JSON object to store the chart configurations
     const chartConfigs = {

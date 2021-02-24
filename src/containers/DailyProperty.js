@@ -6,31 +6,36 @@ import classes from './DailyProperty.module.css';
 import {BoorseContext} from '../context/context';
 
 const DailyPropertyContainer = (props) => {
-  const {dailyProperty} = React.useContext(BoorseContext);
+  const {
+    dailyProperty,
+    dayPropertyInput,
+    getDailyPropertyInput,
+    submitDailyPropertyInput,
+    clearDailyPropertyInput,
+    deleteDailyPropertyInput,
+    updateDailyProperty,
+  } = React.useContext(BoorseContext);
   const dailyPropertyChart = dailyProperty.map(item => {
-    return {value:item.value , label:item.date.toString()}
+    return {value:item.value , label:item.date.split('T')[0].toString()}
   });
   
     return (
       <div className={classes.Content}>
-        <div className={classes.Width}>
+        <div>
           <DailyPropertyInput
-            dayProperty={props.dayProperty}
-            getInput={props.getDayInput}
-            submitInput={props.submitDayInput}
-            clearInput={props.clearDayInput}
+            dayProperty={dayPropertyInput}
+            getInput={(e) => getDailyPropertyInput(e)}
+            submitInput={(e) => submitDailyPropertyInput(e)}
+            clearInput={clearDailyPropertyInput}
             setDate={props.setDate}
           />
           <DayTable
             properties={dailyProperty}
-            delete={props.deleteDayProperty}
-            edit={props.editDayProperty}
+            delete={deleteDailyPropertyInput}
+            edit={updateDailyProperty}
           />
         </div>
-        <DailyPropertyChart
-          data={dailyPropertyChart}
-          className={classes.chart}
-        />
+        <DailyPropertyChart data={dailyPropertyChart} />
       </div>
     );
 }

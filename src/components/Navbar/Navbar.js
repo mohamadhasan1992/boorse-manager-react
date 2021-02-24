@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const {user} = React.useContext(BoorseContext);
-  console.log(user);
   let userbtn;
   if(user){
     userbtn = <img

@@ -2,12 +2,12 @@ import React from 'react';
 import classes from "./LayoutSelector.module.css";
 
 const LayoutSelector = (props) => {
-    const active = props.active === "stock" ? false : true;
+    const active = props.active;
     return (
       <div className={`${classes.stickTop} ${classes.pl5}`}>
         <button
           className={
-            !active
+            active
               ? `${classes.btn} ${classes.ml5} ${classes.btnActive}`
               : `${classes.btn} ${classes.ml5}`
           }
@@ -18,7 +18,7 @@ const LayoutSelector = (props) => {
         </button>
         <button
           className={
-            active
+            !active
               ? `${classes.btn} ${classes.ml5} ${classes.btnActive}`
               : `${classes.btn} ${classes.ml5}`
           }
