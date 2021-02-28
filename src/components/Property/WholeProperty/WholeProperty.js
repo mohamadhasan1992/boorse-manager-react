@@ -2,7 +2,6 @@ import React,{setState} from 'react';
 import classes from '../WholeProperty/wholeProperty.module.css';
 import CheckboxComponent from './CheckBoxComponent/CheckboxComponent';
 import BoardResult from './ResultBoard/ResultBoard';
-import axios from '../../../axios';
 import  {BoorseContext} from '../../../context/context';
 
 

@@ -1,9 +1,17 @@
 .Content{
     display: flex;
     flex-direction: column;
+
 }
 .mainContent{
     min-height: 73vh;
     padding: 0 1rem;
+}
+.spinner{
+    box-sizing: border-box;
+    min-height: 73vh;
+    padding-left: 48%;
+    padding-top: 10rem;
+    
 }
 

@@ -1,20 +1,12 @@
 import React from 'react';
 import {DatePicker} from 'react-persian-datepicker';
 import classes from "../propertyDetail.module.css";
-import  {BoorseContext} from '../../../context/context';
+import calendarStyles from './calendarStyles.module.css';
+import moment from 'moment-jalaali';
 
 
 const PropertyInput = (props) => {
   
-  const styles = {
-    calendarContainer: "calendarContainer",
-    dayPickerContainer: "dayPickerContainer",
-    monthsList: "monthsList",
-    daysOfWeek: "daysOfWeek",
-    dayWrapper: "dayWrapper",
-    selected: "selected",
-    heading: "heading",
-  };
     const {
       name,
       buyDate,
@@ -37,15 +29,12 @@ const PropertyInput = (props) => {
           name="name"
           onChange={props.getInput}
         ></input>
-        <input
-          className={classes.inputStyle}
-          type="number"
-          placeholder="تاریخ خرید"
-          value={buyDate}
-          id="buyDate"
+        <DatePicker
+          className={`${classes.inputStyle} ${classes.buyDateClass}`}
+          calendarStyles={calendarStyles}
           name="buyDate"
-          onChange={props.getInput}
-        ></input>
+          onChange={(e) => props.getDateInput(e, "buyDate")}
+        />
         <input
           className={classes.inputStyle}
           type="number"
@@ -73,15 +62,12 @@ const PropertyInput = (props) => {
           name="buyPurpose"
           onChange={props.getInput}
         ></input>
-        <input
-          className={classes.inputStyle}
-          type="number"
-          placeholder="تاریخ فروش"
-          value={sellDate}
-          id="sellDate"
+        <DatePicker
+          className={`${classes.inputStyle} ${classes.sellDateClass}`}
+          calendarStyles={calendarStyles}
           name="sellDate"
-          onChange={props.getInput}
-        ></input>
+          onChange={(e) => props.getDateInput(e, "sellDate")}
+        />
         <input
           className={classes.inputStyle}
           type="number"
@@ -111,12 +97,15 @@ const PropertyInput = (props) => {
         ></input>
         <div className={classes.iconBox}>
           <span
-            className={`${classes.green} ${classes.pl5}`}
+            className={`${classes.cursor} ${classes.green} ${classes.pl5}`}
             onClick={props.buySubmit}
           >
             <i className="fas fa-check"></i>
           </span>
-          <span className={classes.grey} onClick={props.clearInput}>
+          <span
+            className={`${classes.cursor} ${classes.grey}`}
+            onClick={props.clearInput}
+          >
             <i className="fas fa-eraser"></i>
           </span>
         </div>

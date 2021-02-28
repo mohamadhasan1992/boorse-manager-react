@@ -14,6 +14,7 @@ const DailyPropertyContainer = (props) => {
     clearDailyPropertyInput,
     deleteDailyPropertyInput,
     updateDailyProperty,
+    setDate
   } = React.useContext(BoorseContext);
   const dailyPropertyChart = dailyProperty.map(item => {
     return {value:item.value , label:item.date.split('T')[0].toString()}
@@ -27,7 +28,7 @@ const DailyPropertyContainer = (props) => {
             getInput={(e) => getDailyPropertyInput(e)}
             submitInput={(e) => submitDailyPropertyInput(e)}
             clearInput={clearDailyPropertyInput}
-            setDate={props.setDate}
+            setDate={setDate}
           />
           <DayTable
             properties={dailyProperty}

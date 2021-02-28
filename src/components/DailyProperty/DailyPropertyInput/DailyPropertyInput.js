@@ -3,34 +3,26 @@ import {useRef} from "react";
 import classes from '../DailyProperty.module.css';
 import {DatePicker} from 'react-persian-datepicker';
 import {BoorseContext} from '../../../context/context';
+import moment from 'moment-jalaali';
+import calendarStyles from "./datepickerstyle.module.css";
 
 
 
 const DailyPropertyInput = (props) => {
-  const {dailyProperty} = React.useContext(BoorseContext);
-  console.log(dailyProperty);
-  const styles = {
-    calendarContainer: "calendarContainer",
-    dayPickerContainer: "dayPickerContainer",
-    monthsList: "monthsList",
-    daysOfWeek: "daysOfWeek",
-    dayWrapper: "dayWrapper",
-    selected: "selected",
-    heading: "heading",
-  };
+  
     const { value } = props.dayProperty;
+    
     
     
     return (
       <form className={classes.rowInput}>
         <div className={classes.dayStyle}>
-          
           <select
             name="day"
             className={classes.dropStyle}
             onChange={props.getInput}
           >
-            <option value="شنبه" selected>
+            <option value="شنبه" defaultValue={true}>
               شنبه
             </option>
             <option value="یکشنبه">یکشنبه</option>
@@ -42,8 +34,9 @@ const DailyPropertyInput = (props) => {
 
         <div className={classes.calendar}>
           <DatePicker
-            calendarStyles={styles}
-            onChange={props.setDate}
+            className={classes.inputStyle}
+            calendarStyles={calendarStyles}
+            onChange={(value) => props.setDate(value)}
           />
           <span className={`${classes.green} ${classes.icon}`}>
             <i className="fas fa-calendar-day"></i>

@@ -56,14 +56,18 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-app-polyfill": "^2.0.0",
+    "react-clock": "^3.0.0",
     "react-datepicker2": "^3.3.13",
     "react-dev-utils": "^11.0.1",
     "react-dom": "^17.0.1",
     "react-fusioncharts": "^3.1.2",
+    "react-icons": "^4.2.0",
+    "react-loader-spinner": "^4.0.0",
     "react-modern-calendar-datepicker": "^3.1.6",
     "react-persian-datepicker": "^3.0.2",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
+    "reactjs-persian-calendar": "^1.1.7",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "8.0.2",
@@ -73,6 +77,7 @@
     "ts-pnp": "1.2.0",
     "url-loader": "4.1.1",
     "uuid": "^8.3.2",
+    "vazir-font": "^27.2.2",
     "web-vitals": "^0.2.4",
     "webpack": "4.44.2",
     "webpack-dev-server": "3.11.0",
@@ -158,5 +163,6 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "devDependencies": {}
 }

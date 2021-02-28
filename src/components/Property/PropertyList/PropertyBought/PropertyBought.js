@@ -32,12 +32,12 @@ const PropertyBought = (props) => {
         <div>-</div>
         <div className={classes.iconBox}>
           <span
-            className={`${classes.red} ${classes.pl5}`}
+            className={`${classes.cursor} ${classes.red} ${classes.pl5}`}
             onClick={props.deleteProperty}
           >
             <i className="fas fa-trash-alt"></i>
           </span>
-          <span className={classes.grey} onClick={props.editProperty}>
+          <span className={`${classes.cursor} ${classes.grey}`} onClick={props.editProperty}>
             <i className="fas fa-eraser"></i>
           </span>
         </div>

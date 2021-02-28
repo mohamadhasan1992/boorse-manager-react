@@ -3,39 +3,33 @@ import PropertyBought from './PropertyBought/PropertyBought';
 import PropertyCompleted from './PropertyCompleted/PropertyCompleted';
 import {BoorseContext} from '../../../context/context';
 
-const PropertyList = () => {
+const PropertyList = (props) => {
   const {properties} = React.useContext(BoorseContext);
-  
-  const submitCompleter = (id) => {
-    console.log(id);
-  };
-  const completeChangeHandler = () => {
-      console.log("hello world");
-  };
     return (
       <>
         {
-            properties.map((property) => {
-                if (property.complete) {
+          properties.map((property) => {
+              if (property.complete) {
+                return (
+                  <PropertyCompleted
+                    key={property._id}
+                    property={property}
+                    deleteProperty={() => props.handleDelete(property._id)}
+                    editProperty={() => props.handleEdit(property._id)}
+                  />
+                );
+              }else{
                   return (
-                    <PropertyCompleted
-                      key={property.id}
+                    <PropertyBought
+                      key={property._id}
                       property={property}
-                      deleteProperty={() => this.props.handleDelete(property.id)}
-                      editProperty={() => this.props.handleEdit(property.id)}
+                      editProperty={() =>
+                        props.handleEdit(property._id)
+                      }
+                      deleteProperty={() => props.handleDelete(property._id)}
                     />
-                  );
-                }else{
-                    return (
-                      <PropertyBought
-                        property={property}
-                        editProperty={() =>
-                          this.props.handleEdit(property.id)
-                        }
-                        deleteProperty={() => this.props.handleDelete(property.id)}
-                      />
-                    );  
-                }
+                  );  
+              }
             })
         }
       </>

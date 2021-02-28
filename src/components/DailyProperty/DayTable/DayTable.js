@@ -2,7 +2,7 @@ import React from 'react';
 import DailyPropertyItem from "../DailyPropertyItem/DailyPropertyItem";
 import classes from "../DailyProperty.module.css";
 
-const DayList = (props) => {
+const DayTable = (props) => {
   
     return (
       <div className={classes.table}>
@@ -10,10 +10,10 @@ const DayList = (props) => {
           return (
             <div >
               <DailyPropertyItem
-                key={property.id}
+                key={property._id}
                 propertyValue={property}
-                delete={() => props.delete(property.id)}
-                edit={() => props.edit(property.id)}
+                delete={() => props.delete(property._id)}
+                edit={() => props.edit(property._id)}
                 setDate={props.setDate}
               />
             </div>
@@ -23,4 +23,4 @@ const DayList = (props) => {
     );
 }
 
-export default DayList;
+export default DayTable;
