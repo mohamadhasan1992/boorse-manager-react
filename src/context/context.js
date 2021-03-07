@@ -5,15 +5,16 @@ import dataProperty from "./data/properties";
 import dataWholeProperty from './data/wholeProperty';
 import dataDailyProperty from "./data/dailyProperty";
 
+
 import moment from "moment-jalaali";
 
 
-import { v4 as uuidv4 } from "uuid";
 
 
 
 const rootURL = 'http://127.0.0.2:8000/api/v1';
 
+///// creating context 
 const BoorseContext = React.createContext();
 
 // axios.get('/user').then(response => {
@@ -22,10 +23,34 @@ const BoorseContext = React.createContext();
 // })
 const BoorseProvider = ({children}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(dataUser);
   const [properties, setProperties] = useState(dataProperty);
   const [propertiesSum,setPropertiesSum] = useState(0);
-  const [wholePropertyObject, setWholeProperty] = useState(dataWholeProperty);
+  const [wholePropertyObject, setWholePropertyObject] = useState({
+    initValue: "",
+    difficulty: [
+      {
+        id: 1,
+        difficultyName: "بالا",
+        difficultyStatus: true,
+        difficultyValue: "high",
+        devisionNumber: 2,
+      },
+      {
+        id: 2,
+        difficultyName: "متوسط",
+        difficultyStatus: false,
+        difficultyValue: "medium",
+        devisionNumber: 3,
+      },
+      {
+        id: 3,
+        difficultyName: "کم",
+        difficultyStatus: false,
+        difficultyValue: "low",
+        devisionNumber: 4,
+      },
+    ],
+  });
   const [dailyProperty, setDailyProperty] = useState(dataDailyProperty);
   const [dayPropertyInput, setDayPropertyInput] = useState({
     value: "",
@@ -45,8 +70,9 @@ const BoorseProvider = ({children}) => {
     axios
       .get(`${rootURL}/home`)
       .then((response) => {
+        console.log(response.data.data.wholeProperty );
         setProperties(response.data.data.properties);
-        setWholeProperty(response.data.data.wholeProperty[7]);
+        setWholePropertyObject(response.data.data.wholeProperty[0]);
         setPropertiesSum(response.data.data.propertiesSum);
       })
       .catch((err) => {
@@ -133,7 +159,6 @@ const BoorseProvider = ({children}) => {
 
   const submitDailyPropertyInput = async (e) => {
     e.preventDefault();
-    const newDayProperty = dayPropertyInput;
     let response;
     try{
       response = await axios.post(
@@ -161,6 +186,7 @@ const BoorseProvider = ({children}) => {
       (item) => item._id !== id
     );
     setDailyProperty(filteredDayProperties);
+
   };
   const updateDailyProperty = (id) => {
     const selectedDayProperty = dailyProperty.find((item) => item._id === id);
@@ -173,6 +199,15 @@ const BoorseProvider = ({children}) => {
     selectedDayProperty.edit = true;
     setDailyProperty(filteredDayProperties);
     setDayPropertyInput(selectedDayProperty);
+  };
+  ///////////////////////////////working with whole property
+  const setInitialProperty = async (value,difficulty) => {
+    const data = {initialProperty:value,difficulty:difficulty};
+    //send request to the server
+    const res = await axios.post(`${rootURL}/wholeproperty`,data);
+    //change state of wholeProperty
+    console.log(`response:${res.data.data.wholeProperty[0]}`);
+    setWholePropertyObject(res.data.data.wholeProperty);
   };
 
   //toggle error function
@@ -191,9 +226,9 @@ const BoorseProvider = ({children}) => {
   return (
     <BoorseContext.Provider
       value={{
-        user,
         properties,
         wholePropertyObject,
+        setInitialProperty,
         dailyProperty,
         display,
         error,
@@ -211,7 +246,8 @@ const BoorseProvider = ({children}) => {
         deleteProperty,
         updateProperties,
         updatePropertiesSum,
-        setDate
+        setDate,
+        
       }}
     >
       {children}

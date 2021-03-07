@@ -21,7 +21,8 @@ const Property = () => {
     patchProperty,
     deleteProperty,
     updateProperties,
-    updatePropertiesSum
+    updatePropertiesSum,
+    
   } = React.useContext(BoorseContext);
 
 

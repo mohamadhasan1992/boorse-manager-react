@@ -4,8 +4,9 @@
 
 }
 .mainContent{
-    min-height: 73vh;
+    min-height: 72.3vh;
     padding: 0 1rem;
+    overflow: scroll;
 }
 .spinner{
     box-sizing: border-box;
@@ -14,4 +15,3 @@
     padding-top: 10rem;
     
 }
-

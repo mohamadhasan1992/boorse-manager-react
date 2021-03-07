@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from "./LayoutSelector.module.css";
+import Button from '../../UI/button/button';
 // import { Calendar } from "react-persian-datepicker";
 // import JCalendar from 'reactjs-persian-calendar'
 
@@ -7,35 +8,29 @@ import classes from "./LayoutSelector.module.css";
 
 const LayoutSelector = (props) => {
    
-  
-   
     const active = props.active;
     return (
       <div className={`${classes.Content} ${classes.pl5}`}> 
-        
-        <button
-          className={
+        <Button
+          btnType={
             !active
-              ? `${classes.btn} ${classes.ml5} ${classes.btnActive}`
-              : `${classes.btn} ${classes.ml5}`
+              ? "Active"
+              : "Success"
           }
-          onClick={props.changeLayout}
-          value="dailyProperty"
+          clicked={props.changeLayout}
         >
           دارایی
-        </button>
-
-        <button
-          className={
+        </Button>
+        <Button
+          btnType={
             active
-              ? `${classes.btn} ${classes.ml5} ${classes.btnActive}`
-              : `${classes.btn} ${classes.ml5}`
+              ? "Active"
+              : "Success"
           }
-          onClick={props.changeLayout}
-          value="stock"
+          clicked={props.changeLayout}
         >
           سبدبان
-        </button>
+        </Button>
       </div>
     );
 }

@@ -1,0 +1,28 @@
+.Input{
+    width: 100%;
+    padding: 5rem;
+    box-sizing: border-box;
+}
+.Label{
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3rem;
+
+}
+.InputStyle{
+    box-sizing: border-box;
+    font-size: .8rem;
+    width:19rem;
+    border-radius: 7px;
+    margin: .3rem;
+    padding: .2rem .5rem;
+    font-family: lalezar;
+
+}
+.Invalid{
+    border: 2px solid salmon;
+}
+
+.InputStyle:focus{
+    outline: none;
+}

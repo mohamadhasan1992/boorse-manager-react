@@ -1,4 +1,4 @@
-import React,{setState} from 'react';
+import React,{useState} from 'react';
 import classes from '../WholeProperty/wholeProperty.module.css';
 import CheckboxComponent from './CheckBoxComponent/CheckboxComponent';
 import BoardResult from './ResultBoard/ResultBoard';
@@ -7,106 +7,78 @@ import  {BoorseContext} from '../../../context/context';
 
 const WholeProperty = () => {
   
-  const { wholePropertyObject } = React.useContext(BoorseContext);
-  const {initialProperty, difficulty} = wholePropertyObject;
-  const difficultyList = [
-      {
-        id: 1,
-        difficultyName: "بالا",
-        difficultyStatus: false,
-        difficultyValue: "high",
-        devisionNumber: 2,
-      },
-      {
-        id: 2,
-        difficultyName: "متوسط",
-        difficultyStatus: true,
-        difficultyValue: "medium",
-        devisionNumber: 3,
-      },
-      {
-        id: 3,
-        difficultyName: "کم",
-        difficultyStatus: false,
-        difficultyValue: "low",
-        devisionNumber: 4,
-      },
-    ];
+  const { wholePropertyObject, setInitialProperty } = React.useContext(
+    BoorseContext
+  );
+  
+  const [initValue, setInitValue] = useState(wholePropertyObject.initValue);
+  const [difficulty, setDifficulty] = useState(wholePropertyObject.difficulty);
+  
     //const [showResultBoard, setShowResultBoard] = setState(false);
   //selectedDifficulty = this.state.difficulty.find(item => item.difficultyStatus === true);
   /////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////
-  // grabInitProperty = (e) => {
-  //   const enteredValue = e.target.value.toString();
+  const grabInitProperty = (e) => {
+    const enteredValue = e.target.value.toString();
+    setInitValue(enteredValue);
+  };
 
-  //   this.setState({ initialProperty: enteredValue });
-  // };
+  const submitWholeInput = (e) => {
+    e.preventDefault();
+    setInitialProperty(initValue, difficulty);
+  };
 
-  // submitWholeInput = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("/wholeProperty", this.state.initialProperty)
-  //     .then((response) => {
-  //       console.log(response);
-  //     });
-  //   this.setState({ showResultBoard: true });
-  // };
+  const clearWholeInput = () => {
+    setInitValue("لطفا سرمایه ی اولیه خود را وارد کنید");
+  };
 
-  // clearWholeInput = () => {
-  //   this.setState({ wholeProperty: "" });
-  // };
-
-  // checkboxSelectHandler = (e) => {
-  //   let difficulty = [];
-  //   this.state.difficulty.forEach((item) => {
-  //     if (item.difficultyValue === e.target.value) {
-  //       item.difficultyStatus = true;
-  //     } else {
-  //       item.difficultyStatus = false;
-  //     }
-  //     difficulty.push(item);
-  //   });
-  //   this.setState({
-  //     difficulty,
-  //     selectedDifficulty: difficulty.find((el) => el.difficultyStatus === true),
-  //   });
-  // };
+  const checkboxSelectHandler = (e) => {
+    var newDifficulty = [];
+    difficulty.forEach((item) => {
+      if (item.difficultyValue === e.target.value) {
+        item.difficultyStatus = true;
+      } else {
+        item.difficultyStatus = false;
+      }
+      newDifficulty.push(item);
+    });
+    setDifficulty(newDifficulty);
+  };
   return (
     <div className={classes.oneBox}>
       <div className={classes.rightBox}>
         <div className={classes.inline}>
-          <div className={classes.paddingLeft}>سرمایه ی اولیه</div>
+          <h4 className={classes.paddingLeft}>سرمایه ی اولیه</h4>
           <input
-            type="dropdown"
+            type="input"
             className={`${classes.inputStyle} ${classes.ml5}`}
-            placeholder={initialProperty}
-            //value={props.initValue}
-            //onChange={this.grabInitProperty}
+            value={initValue}
+            onChange={e => grabInitProperty(e)}
           ></input>
           <div className={classes.iconBox}>
             <span
               className={`${classes.green} ${classes.pl5}`}
-              //onClick={this.submitWholeInput}
+              onClick={submitWholeInput}
             >
               <i className="fas fa-check"></i>
             </span>
             <span className={classes.grey} 
-            //onClick={this.clearWholeInput}
+            onClick={clearWholeInput}
             >
               <i className="fas fa-eraser"></i>
             </span>
           </div>
         </div>
         <div className={classes.inline}>
-          <div className={classes.paddingLeft}>میزان ریسک پذیری</div>
+          <h4 className={classes.paddingLeft}>میزان ریسک پذیری</h4>
 
           <form className={classes.formStyle}>
-            {difficultyList.map((eachDifficulty) => {
+            {difficulty.map((eachDifficulty) => {
               return (
                 <CheckboxComponent
                   key={eachDifficulty.id}
                   difficulty={eachDifficulty}
-                  //selectedCheckbox={this.checkboxSelectHandler}
+                  selectedCheckbox={checkboxSelectHandler}
                 />
               );
             })}
@@ -114,10 +86,10 @@ const WholeProperty = () => {
         </div>
       </div>
       
-        <BoardResult
+        {/* <BoardResult
           initValue={initialProperty}
           devideBy={difficulty.devisionNumber}
-        />
+        /> */}
       
     </div>
   );

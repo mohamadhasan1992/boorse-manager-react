@@ -12,7 +12,7 @@ const CheckboxComponent = (props) => {
             type="checkbox"
             name="difficulty"
             value={difficultyValue}
-            onClick={props.selectedCheckbox}
+            onClick={(e) => props.selectedCheckbox(e)}
             checked={difficultyStatus}
         ></input>
         <label htmlFor={difficultyValue}>{difficultyName}</label>

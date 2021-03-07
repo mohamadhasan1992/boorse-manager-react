@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 import {BoorseProvider} from "./context/context";
+import { AuthProvider } from "./context/AuthContext";
 
 
 
@@ -28,11 +29,15 @@ axios.interceptors.response.use(
   }
 );
 
+//creating redux store
+
 ReactDOM.render(
   <React.StrictMode>
-    <BoorseProvider>
-      <App />
-    </BoorseProvider>
+      <AuthProvider>
+        <BoorseProvider>
+          <App />
+        </BoorseProvider>
+      </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

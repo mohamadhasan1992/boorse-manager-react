@@ -5,9 +5,11 @@ import {BoorseContext} from '../../context/context';
 import { Link } from 'react-router-dom';
 import {ImClock} from 'react-icons/im';
 import 'moment/locale/fa';
+import { AuthContext } from "../../context/AuthContext";
 
 
 const Navbar = () => {
+  const { isAutenticated, user, logOutUser } = React.useContext(AuthContext);
   const [value, setValue] = useState(new Date());
   useEffect(() => {
     const interval = setInterval(() => setValue(new Date()), 60000);
@@ -18,18 +20,21 @@ const Navbar = () => {
   }, []);
   
 
-  const {user} = React.useContext(BoorseContext);
   let userbtn;
-  if(user){
-    userbtn = <img
-              className={classes.userPhoto}
-              src={user.photo}
-              alt={user.username}
-            ></img>;
-  }else{
-    userbtn=<Link to="/login" className={classes.signInBtn}>
-              ورود
-            </Link>;
+  if (isAutenticated) {
+    userbtn = (
+      <img
+        className={classes.userPhoto}
+        src={user.photo}
+        alt={user.username}
+      ></img>
+    );
+  } else {
+    userbtn = (
+      <Link to="/login" className={classes.signInBtn}>
+        ورود
+      </Link>
+    );
   }
   
   
@@ -47,9 +52,9 @@ const Navbar = () => {
         </div>
         <div>
           {userbtn}
-          <button className={`${classes.signInBtn} ${classes.signInBtnActive}`}>
+          <Link onClick={logOutUser} to="/" className={`${classes.signInBtn} ${classes.signInBtnActive}`}>
             خروج
-          </button>
+          </Link>
         </div>
       </div>
     );

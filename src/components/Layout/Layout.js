@@ -4,7 +4,8 @@ import Footer from '../Footer/Footer';
 import classes from './Layout.module.css';
 import {BoorseContext} from '../../context/context';
 import LayoutSelector from './LayoutSelector/LayoutSelector';
-import Loader from "react-loader-spinner";
+import Loader from '../UI/spinner/spinner';
+import {AuthContext} from '../../context/AuthContext';
 
 
 //a component that i use inside App.js
@@ -13,11 +14,14 @@ import Loader from "react-loader-spinner";
 //2-components that we want to wrap with this layout
 const Layout = (props) => {
   const { isLoading,display,layoutSelector } = React.useContext(BoorseContext); 
+  const { isAutenticated, user } = React.useContext(AuthContext); 
   if(isLoading){
     return (
       <div className={classes.Content}>
         <Navbar className={classes.Navbar} />
-        <LayoutSelector changeLayout={layoutSelector} active={display} />
+        {isAutenticated && (
+          <LayoutSelector changeLayout={layoutSelector} active={display} />
+        )}
         <Loader
           className={classes.spinner}
           type="Circles"
@@ -32,7 +36,9 @@ const Layout = (props) => {
   return (
     <div className={classes.Content}>
       <Navbar className={classes.Navbar} />
-      <LayoutSelector changeLayout={layoutSelector} active={display} />
+      {isAutenticated && (
+        <LayoutSelector changeLayout={layoutSelector} active={display} />
+      )}
       <main dir="rtl" className={classes.mainContent}>
         {props.children}
       </main>
