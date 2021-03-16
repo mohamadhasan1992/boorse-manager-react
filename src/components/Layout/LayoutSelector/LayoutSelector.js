@@ -13,7 +13,7 @@ const LayoutSelector = (props) => {
       <div className={`${classes.Content} ${classes.pl5}`}> 
         <Button
           btnType={
-            !active
+            active
               ? "Active"
               : "Success"
           }
@@ -23,7 +23,7 @@ const LayoutSelector = (props) => {
         </Button>
         <Button
           btnType={
-            active
+            !active
               ? "Active"
               : "Success"
           }

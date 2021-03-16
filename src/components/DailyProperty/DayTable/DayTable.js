@@ -3,12 +3,9 @@ import DailyPropertyItem from "../DailyPropertyItem/DailyPropertyItem";
 import classes from "../DailyProperty.module.css";
 
 const DayTable = (props) => {
-  
-    return (
-      <div className={classes.table}>
-        {props.properties.map((property, index) => {
+  const items = props.properties.map((property) => {
           return (
-            <div >
+            
               <DailyPropertyItem
                 key={property._id}
                 propertyValue={property}
@@ -16,11 +13,9 @@ const DayTable = (props) => {
                 edit={() => props.edit(property._id)}
                 setDate={props.setDate}
               />
-            </div>
           );
-        })}
-      </div>
-    );
+        })
+    return <div className={classes.table}>{items}</div>;
 }
 
 export default DayTable;

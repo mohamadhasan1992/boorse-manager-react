@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import classes from './Navbar.module.css';
 import logo from '../../assets/logo.png';
-import {BoorseContext} from '../../context/context';
 import { Link } from 'react-router-dom';
 import {ImClock} from 'react-icons/im';
 import 'moment/locale/fa';
@@ -52,9 +51,9 @@ const Navbar = () => {
         </div>
         <div>
           {userbtn}
-          <Link onClick={logOutUser} to="/" className={`${classes.signInBtn} ${classes.signInBtnActive}`}>
+          <button onClick={logOutUser}  className={`${classes.signInBtn} ${classes.signInBtnActive}`}>
             خروج
-          </Link>
+          </button>
         </div>
       </div>
     );

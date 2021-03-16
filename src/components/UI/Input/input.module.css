@@ -26,3 +26,35 @@
 .InputStyle:focus{
     outline: none;
 }
+
+@media only screen and (max-width: 600px) {
+    .InputStyle{
+        max-width: 80%;   }
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .InputStyle{
+        max-width: 80vw;    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .InputStyle{
+        max-width: 70vw;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .InputStyle{
+        max-width: 60vw;    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .InputStyle{
+        max-width: 45vw;
+    }
+}

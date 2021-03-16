@@ -1,5 +1,6 @@
 import React from "react";
 import classes from '../../propertyDetail.module.css';
+import Icon from '../../../UI/icons/icons';
 
 const PropertyCompleted = (props) => {
   const {
@@ -14,7 +15,7 @@ const PropertyCompleted = (props) => {
     sellPurpose,
   } = props.property;
   return (
-    <div className={classes.Content}>
+    <div className={`${classes.Content} ${classes.Completed}`}>
       <div>{name}</div>
       <div>{buyDate}</div>
       <div>{buyValue}</div>
@@ -25,12 +26,14 @@ const PropertyCompleted = (props) => {
       <div>{sellPrice}</div>
       <div>{sellPurpose}</div>
       <div className={classes.iconBox}>
-        <span className={`${classes.red} ${classes.pl5}`} onClick={props.deleteProperty}>
-          <i className="fas fa-trash-alt"></i>
-        </span>
-        <span className={classes.grey} onClick={props.editProperty}>
-          <i className="fas fa-eraser"></i>
-        </span>
+        <Icon
+          icontype="file"
+          clicked={props.deleteProperty}
+        />
+        <Icon
+          icontype="edit"
+          clicked={props.editProperty}
+        />
       </div>
     </div>
   );

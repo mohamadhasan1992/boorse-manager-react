@@ -1,15 +1,11 @@
 import React from 'react';
-import {useRef} from "react";
 import classes from '../DailyProperty.module.css';
 import {DatePicker} from 'react-persian-datepicker';
-import {BoorseContext} from '../../../context/context';
-import moment from 'moment-jalaali';
 import calendarStyles from "./datepickerstyle.module.css";
 
 
 
 const DailyPropertyInput = (props) => {
-  
     const { value } = props.dayProperty;
     
     

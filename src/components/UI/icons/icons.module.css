@@ -1,0 +1,15 @@
+.IconStyle{
+    cursor: pointer;
+    padding-left: .5rem;
+
+}
+.Success{
+    color: #44bd32;
+}
+
+.Danger{
+    color: #e84118;
+}
+.Peace{
+    color: #192a56;
+}

@@ -1,8 +1,7 @@
 
-.pl5{
-    padding: .5rem 0;
-}
 .Content{
+    margin-left: 2rem;
+    box-sizing: border-box;
     height: 2rem;
     display: grid;
     grid-template-columns: repeat(10,1fr);

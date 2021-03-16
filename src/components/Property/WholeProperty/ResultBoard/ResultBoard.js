@@ -2,9 +2,12 @@ import React from 'react';
 import classes from '../wholeProperty.module.css';
 
 const ResultBoard = (props) => {
-    const {initValue, devideBy} = props;
+    const {initValue, difficulty} = props;
     const freeMoney = initValue * 0.1;
-    const eachProperty = Math.round((initValue-freeMoney) / devideBy);
+    const devideBy = difficulty.find(item => item.difficultyStatus === true).devisionNumber;
+    const eachProperty = Math.round(
+      (initValue - freeMoney) / devideBy
+    );
     return (
       <div dir="rtl" className={classes.leftBox}>
           <p>سبد پیشنهادی برای شما دارای <span>{devideBy}</span>سهم به ارزش ذاتی {eachProperty} تومان می باشد.</p>

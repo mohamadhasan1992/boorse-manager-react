@@ -7,6 +7,7 @@
     align-items: center;
     height: 3rem;
     color: #dcdde1;
+    width: 100%;
 }
 .logo{
     box-sizing: border-box;
@@ -56,4 +57,55 @@
     color: #fff;
     display: flex;
     align-items: center;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .Content{
+        height: 2rem;
+        font-size: .6rem;
+        max-width: 100%;
+        
+    }
+    .iconBox{
+        
+        width: inherit;
+        height: inherit;    
+      }
+      .logo{
+          width: 2rem;
+          height: 2rem;
+      }
+      .signInBtn{
+          padding: 0 .8rem;
+          font-size: .6rem;
+      }
+      .mr5{
+          margin-right: 0;
+      }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .formAndBtn{
+        max-width: 80vw;    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .formAndBtn{
+        max-width: 70vw;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .formAndBtn{
+        max-width: 60vw;    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .formAndBtn{
+        max-width: 45vw;
+    }
 }

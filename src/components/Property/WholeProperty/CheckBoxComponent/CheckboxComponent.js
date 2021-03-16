@@ -1,4 +1,5 @@
 import React from "react";
+import Input from '../../../UI/Input/Input';
 
 const CheckboxComponent = (props) => {
   const {
@@ -6,6 +7,7 @@ const CheckboxComponent = (props) => {
     difficultyStatus,
     difficultyValue
   } = props.difficulty;
+  
   return (
     <div>
         <input

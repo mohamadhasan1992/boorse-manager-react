@@ -5,6 +5,12 @@
     margin-top: 1rem;
     line-height: 1.8rem;
     padding: 0 1rem;
+    
+    
+}
+.Completed{
+    border: 2px solid green;
+    border-radius: 15px;
 }
 
 
@@ -58,6 +64,7 @@
 }
 .iconBox{
     display: flex;
+    align-items: center;
 }
 .pl5{
     padding-left: .5rem;
@@ -84,4 +91,8 @@
 .sellDateClass{
     border-color: #192a56;
     height: 2rem;
+}
+.Border{
+    border-bottom: 1px solid grey;
+    text-align: center;
 }

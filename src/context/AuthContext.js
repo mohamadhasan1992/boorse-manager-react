@@ -7,36 +7,44 @@ const rootURL = "http://127.0.0.2:8000/api/v1/user";
 const AuthContext = React.createContext();
 
 const AuthProvider = ({children}) => {
+  const [token, setToken] = useState('');
     const [isAutenticated , setIsAutenticated] = useState(true);
     const [user,setUser]= useState({username:"username",email:"email",photo:"photo"});
     const [loading, setloading] = useState(false);
-    const logOutUser = () => {
-        setIsAutenticated(false);
+    const logOutUser = async() => {
+      setloading(true);
+      const response = await axios.post(`${rootURL}/logout`);
+      console.log(response);
+      setIsAutenticated(false);
     };
     const logInUser = async(data) => {
         try{
-            setloading(true);
-            const response = await axios.post(`${rootURL}/login`, data);
-            console.log(response.data.token);
-            setloading(false);
-        }catch(err){
-            console.log(err);
-            setloading(false);
+          setloading(true);
+          const response = await axios.post(`${rootURL}/login`, data);
+          console.log(response);
+          setToken(response.data.token);
+          setIsAutenticated(true);
+          setloading(false);
+        }catch(error){
+          console.log(error.message);
+          setloading(false);
         }
+        
     };
     const signUpUser = async(data) => {
     try{
         setloading(true);
-        
         const response = await axios.post(`${rootURL}/signup`,data);
-        console.log(response.data.token);
+        setToken(response.data.token);
+        setIsAutenticated(true);
         setloading(false);
-    }catch(err){
-        console.log(err);
+    }catch(error){
+        console.log(error.message);
         setloading(false);
 
     }
     };
+    
 
     return (
       <AuthContext.Provider
